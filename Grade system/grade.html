@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade System</title>
+    <link rel="stylesheet" href="grade.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Grade System</h1>
+        <form id="gradeForm">
+            <label for="math">Mathematics:</label>
+            <input type="number" placeholder="Enter marks" id="math" name="math" min="0" max="100" required><br><br>
+
+            <label for="science">Science:</label>
+            <input type="number" placeholder="Enter marks" id="science" name="science" min="0" max="100" required><br><br>
+
+            <label for="english">English:</label>
+            <input type="number" placeholder="Enter marks" id="english" name="english" min="0" max="100" required><br><br>
+
+            <label for="history">History:</label>
+            <input type="number" placeholder="Enter marks" id="history" name="history" min="0" max="100" required><br><br>
+
+            <label for="geography">Geography:</label>
+            <input type="number" placeholder="Enter marks" id="geography" name="geography" min="0" max="100" required><br><br>
+
+            <button type="button" id="calculateButton" onclick="calculateGrades()">Calculate</button>
+        </form>
+
+        <div id="result">
+            <p id="totalMarks">Total Marks: </p>
+            <p id="grade">Grade: </p>
+        </div>
+    </div>
+    <script src="grade.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Transformer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background: rgb(119, 30, 30);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 11px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 18px;
+        }
+        button {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+        }
+        button:hover{
+            transform: scale(1.09);
+        }
+        #result{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ENTER THE TEXT</h2>
+        <input type="text" id="inputText" placeholder="Type your sentence here" />
+        <div>
+            <button onclick="toUpperCase()">Uppercase</button>
+            <button onclick="toLowerCase()">Lowercase</button>
+            <button onclick="clearText()">Clear</button>
+            <button onclick="wordCount()">Word Count</button>
+            <button onclick="removeSpaces()">Remove Spaces</button>
+            <button onclick="countLetters()">Count Letters</button>
+        </div>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function toUpperCase() {
+            let input = document.getElementById('inputText').value;
+            document.getElementById('result').textContent = input.toUpperCase();
+        }
+
+        function toLowerCase() {
+            let input = document.getElementById('inputText').value;
+            document.getElementById('result').textContent = input.toLowerCase();
+        }
+
+        function clearText() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('result').textContent = '';
+        }
+
+        function wordCount() {
+            let input = document.getElementById('inputText').value;
+            let wordCount = input.trim() ? input.trim().split(/\s+/).length : 0;
+            document.getElementById('result').textContent = `Word count: ${wordCount}`;
+        }
+
+        function removeSpaces() {
+            let input = document.getElementById('inputText').value;
+            document.getElementById('result').textContent = input.replace(/\s+/g, '');
+        }
+
+        function countLetters() {
+            let input = document.getElementById('inputText').value;
+            let letterCount = input.replace(/\s+/g, '').length;
+            document.getElementById('result').textContent = `Letter count: ${letterCount}`;
+        }
+    </script>
+</body>
+</html>
