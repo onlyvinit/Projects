@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .cart-total {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: right;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="ml-auto cart-icon" onclick="window.location.href='cart.html'">
+                <span class="navbar-text">Cart</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Your Cart</h2>
+        <div id="cart-items" class="mb-4">
+            <!-- items will be placed here -->
+        </div>
+        <div class="cart-total" id="cart-total">
+            Total: $0
+        </div>
+        <div class="text-right">
+            <button class="btn btn-primary" onclick="clearCart()">Clear Cart</button>
+            <button class="btn btn-secondary" onclick="window.location.href='index.html'">Continue to Shopping</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', loadCart);
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartItemsContainer = document.getElementById('cart-items');
+            let cartTotal = document.getElementById('cart-total');
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                let cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item', 'd-flex', 'justify-content-between', 'align-items-center');
+                cartItem.innerHTML = `
+            <div class="d-flex align-items-center">
+                <img src="${item.image}" alt="${item.title}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+                <div>
+                    <h6>${item.title}</h6>
+                    <p>${item.description}</p>
+                </div>
+            </div>
+            <div>$${item.price.toFixed(2)}</div>
+        `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            cartTotal.innerText = `Total: $${total.toFixed(2)}`;
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            loadCart();
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById('cart-count').innerText = cart.length;
+        }
+    </script>
+</body>
+
+</html>
