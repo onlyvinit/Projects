@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #17479a);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .weather-result {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <div class="container">
+        <input type="text" id="cityInput" class="form-control" placeholder="Enter city name">
+        <button id="getWeatherBtn" class="btn btn-primary mt-3">Get Weather</button>
+        <div id="weatherResult" class="weather-result mt-4"></div>
+    </div>
+
+    <script>
+        document.getElementById('getWeatherBtn').addEventListener('click', function() {
+    const city = document.getElementById('cityInput').value;
+    const apiKey = '2e96cf450547b9ff17cfedea741d3778';  
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const weatherResult = document.getElementById('weatherResult');
+            if (data.cod === 200) {
+                weatherResult.innerHTML = `
+                    <h3>${data.name}, ${data.sys.country}</h3>
+                    <p>Temperature: ${data.main.temp} °C</p>
+                    <p>Weather: ${data.weather[0].description}</p>
+                    <p>Humidity: ${data.main.humidity}%</p>
+                    <p>Wind Speed: ${data.wind.speed} m/s</p>
+                `;
+            } else {
+                weatherResult.innerHTML = `<p>${data.message}</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching the weather data:', error);
+        });
+});
+
+    </script>
+</body>
+</html>
