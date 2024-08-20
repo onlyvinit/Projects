@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>want to have a Date?</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+.chat-box {
+    text-align: center;
+}
+
+#promptMessage {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#userResponse {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#nextButton {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#nextButton:hover {
+    background-color: #218838;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-box" id="chatBox">
+            <p id="promptMessage">Hey there! How’s it going?</p>
+            <input type="text" id="userResponse" placeholder="Type your response here">
+            <button id="nextButton" onclick="processResponse()">Next</button>
+        </div>
+    </div>
+
+    <script>
+let step = 0;
+
+function processResponse() {
+    const chatBox = document.getElementById('chatBox');
+    const promptMessage = document.getElementById('promptMessage');
+    const userResponse = document.getElementById('userResponse').value.trim().toLowerCase();
+
+    switch (step) {
+        case 0:
+            promptMessage.textContent = "Have you been up to anything fun lately?";
+            break;
+        case 1:
+            promptMessage.textContent = "That sounds interesting! Do you enjoy hanging out at cafes or parks more?";
+            break;
+        case 2:
+            if (userResponse.includes("cafe")) {
+                promptMessage.textContent = "Cafes are great for a cozy vibe! Do you have a favorite spot?";
+            } else {
+                promptMessage.textContent = "Parks are awesome for a relaxing day out! Got a favorite park?";
+            }
+            break;
+        case 3:
+            promptMessage.textContent = "Nice choice! Would you like to meet up sometime and chill there? (yes/no)";
+            break;
+        case 4:
+            if (userResponse === "yes") {
+                promptMessage.textContent = "Sweet! I’ll reach out soon to plan something.";
+            } else {
+                promptMessage.textContent = "No worries! Maybe another time then.";
+            }
+            setTimeout(() => {
+                promptMessage.textContent = "Thanks for the chat! Catch you later!";
+                document.getElementById('userResponse').style.display = 'none';
+                document.getElementById('nextButton').style.display = 'none';
+            }, 2000);
+            break;
+        default:
+            break;
+    }
+    step++;
+    document.getElementById('userResponse').value = '';
+}
+
+    </script>
+</body>
+</html>
