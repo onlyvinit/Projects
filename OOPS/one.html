@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>person class</title>
+</head>
+<body>
+    <script>
+        class Person {
+    constructor(fullName, age, country) {
+        this.fullName = fullName;
+        this.age = age;
+        this.country = country;
+    }
+
+    showInfo() {
+        console.log(`Name: ${this.fullName}, Age: ${this.age}, Country: ${this.country}`);
+    }
+}
+
+let userAlex92 = new Person("Alex Johnson", 31, "Canada");
+let userMia_007 = new Person("Mia Wallace", 28, "Australia");
+
+userAlex92.showInfo();
+userMia_007.showInfo();
+
+    </script>
+</body>
+</html>

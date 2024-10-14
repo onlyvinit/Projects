@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape, circle and triangle</title>
+</head>
+<body>
+    <script>
+        class Shape {
+    calculateArea() {
+        console.log("Area calculation not implemented for base shape.");
+    }
+}
+
+class Circle extends Shape {
+    constructor(radius) {
+        super();
+        this.radius = radius;
+    }
+
+    calculateArea() {
+        return Math.PI * Math.pow(this.radius, 2);
+    }
+}
+
+class Triangle extends Shape {
+    constructor(base, height) {
+        super();
+        this.base = base;
+        this.height = height;
+    }
+
+    calculateArea() {
+        return 0.5 * this.base * this.height;
+    }
+}
+
+// Creating instances for Circle and Triangle
+let circleMagic7 = new Circle(10);
+console.log(`Circle Area: ${circleMagic7.calculateArea().toFixed(2)}`);
+
+let triangleMaster99 = new Triangle(5, 12);
+console.log(`Triangle Area: ${triangleMaster99.calculateArea()}`);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employee</title>
+</head>
+<body>
+    <script>
+        class Employee {
+    constructor(name, salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    calculateAnnualSalary() {
+        return this.salary * 12;
+    }
+}
+
+class Manager extends Employee {
+    constructor(name, salary, department, bonus) {
+        super(name, salary);
+        this.department = department;
+        this.bonus = bonus;
+    }
+
+    calculateAnnualSalary() {
+        return (this.salary * 12) + this.bonus;
+    }
+}
+
+// Unique manager instances
+let managerSamX = new Manager("Sam Williams", 5000, "Sales", 3000);
+let managerNinaZ = new Manager("Nina Rodgers", 6000, "HR", 5000);
+
+console.log(`Manager Sam's Annual Salary: $${managerSamX.calculateAnnualSalary()}`);
+console.log(`Manager Nina's Annual Salary: $${managerNinaZ.calculateAnnualSalary()}`);
+
+    </script>
+</body>
+</html>

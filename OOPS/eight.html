@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animal and dog</title>
+</head>
+<body>
+    <script>
+        class Animal {
+    constructor(species, sound) {
+        this.species = species;
+        this.sound = sound;
+    }
+
+    makeSound() {
+        console.log(`${this.species} makes a sound: ${this.sound}`);
+    }
+}
+
+class Dog extends Animal {
+    constructor(species, sound, color) {
+        super(species, sound);
+        this.color = color;
+    }
+
+    makeSound() {
+        console.log(`The ${this.color} ${this.species} barks: ${this.sound}`);
+    }
+}
+
+// Unique dog instance
+let dogBuddy = new Dog("Dog", "Woof Woof", "brown");
+dogBuddy.makeSound();
+
+    </script>
+</body>
+</html>

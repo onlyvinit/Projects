@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Care</title>
+</head>
+<body>
+    <script>
+        class Product {
+    constructor(productID, name, price) {
+        this.productID = productID;
+        this.name = name;
+        this.price = price;
+    }
+
+    calculateTotalPrice(quantity) {
+        return this.price * quantity;
+    }
+}
+
+class PersonalCareProduct extends Product {
+    constructor(productID, name, price, warrantyPeriod) {
+        super(productID, name, price);
+        this.warrantyPeriod = warrantyPeriod;
+    }
+
+    calculateTotalPrice(quantity) {
+        const totalPrice = super.calculateTotalPrice(quantity);
+        return totalPrice + this.warrantyPeriod * 10; // Adding warranty cost
+    }
+}
+
+// Unique product instance
+let skincareLover12 = new PersonalCareProduct("PC123", "Moisturizer", 15, 2);
+console.log(`Total Price: $${skincareLover12.calculateTotalPrice(3)}`);
+
+    </script>
+</body>
+</html>

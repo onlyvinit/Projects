@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bank class</title>
+</head>
+<body>
+    <script>
+        class Bank {
+    constructor(bankName) {
+        this.bankName = bankName;
+        this.branches = [];
+    }
+
+    addBranch(branchName) {
+        this.branches.push(branchName);
+        console.log(`Added branch: ${branchName}`);
+    }
+
+    removeBranch(branchName) {
+        const index = this.branches.indexOf(branchName);
+        if (index > -1) {
+            this.branches.splice(index, 1);
+            console.log(`Removed branch: ${branchName}`);
+        } else {
+            console.log(`Branch not found: ${branchName}`);
+        }
+    }
+
+    displayBranches() {
+        console.log(`Branches of ${this.bankName}: ${this.branches.join(", ")}`);
+    }
+}
+
+let userBank123 = new Bank("User's Trust Bank");
+userBank123.addBranch("Downtown");
+userBank123.addBranch("Uptown");
+userBank123.displayBranches();
+userBank123.removeBranch("Uptown");
+userBank123.displayBranches();
+
+    </script>
+</body>
+</html>

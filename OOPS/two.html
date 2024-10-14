@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangle</title>
+</head>
+<body>
+    <script>
+        class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    calculateArea() {
+        return this.width * this.height;
+    }
+
+    calculatePerimeter() {
+        return 2 * (this.width + this.height);
+    }
+}
+
+// User-defined rectangle
+let rectangle_hero = new Rectangle(8, 12);
+console.log(`Area: ${rectangle_hero.calculateArea()}`);
+console.log(`Perimeter: ${rectangle_hero.calculatePerimeter()}`);
+
+    </script>
+</body>
+</html>
